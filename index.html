@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Image Classifier</title>
+{% endblock %}
+
+{% block body %}
+<section id="introduction">
+    <div class="position-relative overflow-hidden text-center bg-light">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+          <h1 class="display-3">Classify Images!</h1>
+          <p class="lead">Upload an image file, and an artificial neural network will analyze the image to tell you what it's all about.</p>
+          <a class="btn btn-outline-secondary" href="#upload">Upload Image</a>
+        </div>
+      </div>
+</section>
+
+<section id="about">
+    <div class="position-relative overflow-hidden text-center bg-dark">
+        <div class="col-md-9 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 text-primary">How it Works</h1>
+            <p class="text-light">This application makes use of <a href="https://arxiv.org/abs/1704.04861">MobileNet</a>, a smart, lightweight convolutional neural network with weights trained on ImageNet. The model's predictions are then graphically rendered via <a href="https://matplotlib.org"><code>matplotlib</code></a> to present the user with an intuitive, easily-interpretable result.</p>
+        </div>
+      </div>
+</section>   
+
+<section id="upload">
+    <div class="container">
+        <div class="jumbotron m-5 text-center">
+            <h1 class="display-4">Upload Image</h1>
+            <p>Upload an image you want to classify from your local file directory. After you have successfully selected your image file, the preview of the image will appear below.</p>
+            <p>Note that the image files must be one of the following supported formats: <code>.png</code>, <code>.jpg</code>, or <code>.jpeg</code>.</p>
+            <form action='/predict' method='post' enctype="multipart/form-data" id="form-node">
+                <div class="custom-file">
+                    <input class="custom-file-input" type="file" name="image" id="customFile" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" required>
+                    <label class="custom-file-label" for="customFile">Choose File</label>
+                </div>
+            </form>
+        </div>
+        <div class="text-center">
+            <img src="https://via.placeholder.com/1000x600/f7f7f7/007bff/?text=Image+Placeholder" class="img-fluid mx-auto rounded d-block" alt="Responsive image" id="blah">
+            <input type="submit" form="form-node" value="Generate Prediction" class="btn btn-primary m-5">
+        </div>
+    </div> 
+</section>
+
+<script>
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+{% endblock %}
