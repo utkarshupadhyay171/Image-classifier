@@ -1,6 +1,6 @@
 Flask
 tensorflow
 
-numpy
+
 
 gunicorn
