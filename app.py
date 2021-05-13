@@ -1,4 +1,3 @@
-from flask import Flask, render_template, request, redirect
 from PIL import Image
 from io import BytesIO
 from tensorflow.keras.applications.mobilenet import preprocess_input, decode_predictions
@@ -9,7 +8,7 @@ from matplotlib.figure import Figure
 import numpy as np
 import base64
 import matplotlib.pyplot as plt
-from flask_ngrok import run_with_ngrok
+
 plt.style.use('seaborn-whitegrid')
 plt.rcParams.update({'font.size': 12})
 
